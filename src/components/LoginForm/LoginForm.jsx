@@ -76,6 +76,7 @@ const LoginForm = () => {
           </div>
         ) : (
           <div className="wrapper">
+            <img src="" alt="Company Logo" className="login-logo" />
             <p
               ref={errRef}
               className={errMsg ? "errmsg" : "offscreen"}
