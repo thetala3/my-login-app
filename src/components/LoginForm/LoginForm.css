@@ -1,6 +1,6 @@
 .wrapper {
   width: 420px;
-  background: slateblue;
+  background: #2b5787;
   color: white;
   border-radius: 10px;
   padding: 30px 40px;
@@ -22,7 +22,7 @@
   width: 100%;
   height: 100%;
   background: transparent;
-  border: 2px solid rgba(255, 255, 255, 0.2);
+  border: 2px solid #517fa4;
   outline: none;
   border-radius: 40px;
   font-size: 16px;
@@ -31,7 +31,7 @@
 }
 
 .input-box input::placeholder {
-  color: #fff;
+  color: #a2c4d9;
 }
 
 .input-box .icon {
@@ -40,19 +40,20 @@
   top: 50%;
   transform: translateY(-50%);
   font-size: 16px;
+  color: #ffffff;
 }
 
 .wrapper button {
   width: 100%;
   height: 45px;
-  background: #fff;
+  background: #4a90e2;
   border: none;
   outline: none;
   border-radius: 40px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   cursor: pointer;
   font-size: 16px;
-  color: #333;
+  color: #2b5787;
   font-weight: 700;
 }
 
@@ -65,7 +66,8 @@
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background: url("../Assests/background.jpg") no-repeat center center fixed;
+  background: url("../Assests/abu-dhabi-seascape-with-skyscrapers.jpg")
+    no-repeat center center fixed;
   /* no-repeat: no-repeat; */
   background-size: cover;
   /* background-position: center; */
@@ -77,7 +79,7 @@
 }
 
 .errmsg {
-  background-color: #b6a0c8;
+  background-color: #305777;
   color: white;
   font-weight: bold;
   padding: 0.5rem;
