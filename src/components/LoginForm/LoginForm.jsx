@@ -68,47 +68,49 @@ const LoginForm = () => {
 
   return (
     <>
-      {success ? (
-        <div>
-          <h1>You are logged in!</h1>
-          <br />
-        </div>
-      ) : (
-        <div className="wrapper">
-          <p
-            ref={errRef}
-            className={errMsg ? "errmsg" : "offscreen"}
-            aria-live="assertive"
-          >
-            {errMsg}
-          </p>
-          <form action="" onSubmit={handleLogin}>
-            <h1>Mortgage System</h1>
-            <div className="input-box">
-              <input
-                type="text"
-                placeholder="Username"
-                ref={userRef}
-                value={user}
-                required={true}
-                onChange={(e) => setUser(e.target.value)}
-              />
-              <FaUser className="icon" />
-            </div>
-            <div className="input-box">
-              <input
-                type="password"
-                placeholder="Password"
-                value={password}
-                required={true}
-                onChange={(e) => setPassword(e.target.value)}
-              />
-              <FaLock className="icon" />
-            </div>
-            <button type="submit">Login</button>
-          </form>
-        </div>
-      )}
+      <div className="login-body">
+        {success ? (
+          <div>
+            <h1>You are logged in!</h1>
+            <br />
+          </div>
+        ) : (
+          <div className="wrapper">
+            <p
+              ref={errRef}
+              className={errMsg ? "errmsg" : "offscreen"}
+              aria-live="assertive"
+            >
+              {errMsg}
+            </p>
+            <form action="" onSubmit={handleLogin}>
+              <h1>Mortgage System</h1>
+              <div className="input-box">
+                <input
+                  type="text"
+                  placeholder="Username"
+                  ref={userRef}
+                  value={user}
+                  required={true}
+                  onChange={(e) => setUser(e.target.value)}
+                />
+                <FaUser className="icon" />
+              </div>
+              <div className="input-box">
+                <input
+                  type="password"
+                  placeholder="Password"
+                  value={password}
+                  required={true}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+                <FaLock className="icon" />
+              </div>
+              <button type="submit">Login</button>
+            </form>
+          </div>
+        )}
+      </div>
     </>
   );
 };

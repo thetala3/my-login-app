@@ -1,0 +1,72 @@
+.top-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  padding: 10px 20px;
+}
+
+.bottom-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #0073e6;
+  padding: 10px 20px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo img {
+  margin-right: 10px;
+}
+
+.navigation ul {
+  list-style: none;
+  display: flex;
+}
+
+.navigation ul li {
+  margin-right: 20px;
+}
+
+.navigation ul li a {
+  text-decoration: none;
+  color: white;
+  font-size: 12px; /* Adjust the font size as needed */
+}
+
+.language-selector {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.language-selector button {
+  margin-right: 0 5px;
+  border: none;
+  background-color: transparent;
+  color: #0000ff;
+  padding: 10px 20px;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 12px; /* Adjust the font size as needed */
+  align-items: center;
+}
+
+.user-info {
+  text-align: right;
+  color: white;
+}
+
+.user-info-item {
+  margin-right: 20px;
+  font-size: 12px; /* Adjust the font size as needed */
+}
+
+.logout {
+  /* Add styles for logout button */
+}

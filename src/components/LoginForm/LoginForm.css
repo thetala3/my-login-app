@@ -56,7 +56,7 @@
   font-weight: 700;
 }
 
-body {
+.login-body {
   margin: 0;
   font-family: "Poppins", sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -65,10 +65,10 @@ body {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background: url("../Assests/background.jpg");
-  no-repeat: no-repeat;
+  background: url("../Assests/background.jpg") no-repeat center center fixed;
+  /* no-repeat: no-repeat; */
   background-size: cover;
-  background-position: center;
+  /* background-position: center; */
 }
 
 .offscreen {

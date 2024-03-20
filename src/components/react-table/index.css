@@ -1,0 +1,27 @@
+.custom-select {
+  width: 300px;
+  margin-right: 10px;
+  padding: 5px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+.custom-input {
+  width: 300px;
+  margin-right: 10px;
+  padding: 5px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  background-color: #0073e6;
+}
+.hr-spacing {
+  height: 5px;
+  background-color: transparent;
+}
