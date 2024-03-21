@@ -1,27 +1,79 @@
-.custom-select {
-  width: 300px;
-  margin-right: 10px;
-  padding: 5px;
-  border-radius: 5px;
+/* CustomTableStyles.css */
+
+/* Select and input box styling */
+.custom-select,
+.custom-input {
+  width: 100%;
+  height: 48px; /* Match height */
+  border: 1px solid #ccc; /* Consistent border */
+  background: transparent;
+  border-radius: 4px; /* Match border-radius */
+  font-size: 16px;
   margin-bottom: 10px;
-  margin-top: 10px;
+  padding-left: 10px; /* Consistent padding */
 }
 
 .custom-input {
-  width: 300px;
-  margin-right: 10px;
-  padding: 5px;
-  border-radius: 5px;
-  margin-bottom: 10px;
-  margin-top: 10px;
+  border: 1px solid #ccc; /* Thin line to match Select */
 }
 
-.container {
-  display: flex;
-  justify-content: center;
-  background-color: #0073e6;
+.MuiSelect-select.MuiSelect-outlined.MuiOutlinedInput-input {
+  padding-top: 14px;
+  padding-bottom: 15px;
 }
+
+.MuiInputBase-root {
+  font-size: 16px; /* Ensure font size matches */
+}
+
+/* For the 'Add Filter' placeholder to be faded */
+.MuiMenuItem-root.Mui-disabled {
+  opacity: 0.42; /* Match the opacity of TextField placeholder */
+}
+
+.custom-input::placeholder {
+  color: rgba(0, 0, 0, 0.42); /* Faded like 'Add Filter' */
+}
+
+/* Table styling */
+.custom-table-container {
+  margin-bottom: 20px;
+}
+
+.custom-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.custom-table th,
+.custom-table td {
+  border: 1px solid #ddd;
+  padding: 12px; /* Increase padding for better readability */
+  text-align: left;
+}
+
+.custom-table th {
+  background-color: #f2f2f2;
+  color: #333; /* Adjust text color for better contrast */
+}
+
+.custom-table tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.custom-table tbody tr:hover {
+  background-color: #e5e5e5;
+}
+
+/* Responsive table */
+@media (max-width: 768px) {
+  .custom-table th,
+  .custom-table td {
+    padding: 8px; /* Adjust padding for smaller screens */
+  }
+}
+
 .hr-spacing {
-  height: 5px;
+  height: 30px;
   background-color: transparent;
 }

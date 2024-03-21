@@ -1,39 +1,37 @@
 import React, { useState, useMemo } from "react";
-import DataTable from "react-data-table-component";
+import { useTable, usePagination } from "react-table";
+import {
+  Table,
+  TableHead,
+  TableBody,
+  TableRow,
+  TableCell,
+  TableContainer,
+  TablePagination,
+  TextField,
+  Box,
+  Select,
+  MenuItem,
+  FormControl,
+  InputLabel
+} from "@mui/material";
 import "./index.css"; // Import the CSS file
 
-const CustomDataTable = ({ data }) => {
+const CustomTable = ({ data }) => {
   const [filterText, setFilterText] = useState("");
   const [selectedColumn, setSelectedColumn] = useState("");
-
-  const getMinWidth = (key) => {
-    const maxWidth = 200; // Set a reasonable max width to prevent overly wide columns
-    const longestString = data.reduce((acc, item) => {
-      const currentItemLength = item[key] ? item[key].toString().length : 0;
-      return currentItemLength > acc ? currentItemLength : acc;
-    }, 0);
-    return Math.min(maxWidth, longestString * 7);
-  };
 
   const columns = useMemo(
     () =>
       Object.keys(data[0] || {}).map((key) => ({
-        name: key,
-        selector: (row) => row[key],
-        sortable: true,
-        wrap: true,
-        style: {
-          whiteSpace: "normal",
-          overflow: "visible",
-          wordBreak: "break-word" // To ensure long words do not overflow
-        }
+        Header: key,
+        accessor: key
       })),
     [data]
   );
 
   const filteredData = useMemo(() => {
     if (!selectedColumn || !filterText) return data;
-
     return data.filter((item) =>
       item[selectedColumn]
         .toString()
@@ -42,92 +40,100 @@ const CustomDataTable = ({ data }) => {
     );
   }, [data, selectedColumn, filterText]);
 
-  const customStyles = {
-    headCells: {
-      style: {
-        fontSize: "15px",
-        fontWeight: "bold",
-        color: "#ffffff",
-        backgroundColor: "#666666",
-        whiteSpace: "normal",
-        overflow: "visible",
-        wordBreak: "break-word"
-      }
+  const {
+    getTableProps,
+    getTableBodyProps,
+    headerGroups,
+    prepareRow,
+    page,
+    canPreviousPage,
+    canNextPage,
+    pageOptions,
+    pageCount,
+    gotoPage,
+    nextPage,
+    previousPage,
+    setPageSize,
+    state: { pageIndex, pageSize }
+  } = useTable(
+    {
+      columns,
+      data: filteredData,
+      initialState: { pageIndex: 0, pageSize: 5 }
     },
-    cells: {
-      style: {
-        fontSize: "14px",
-        color: "#000000",
-        backgroundColor: "#ffffff",
-        whiteSpace: "normal",
-        overflow: "visible"
-      }
-    },
-    rows: {
-      style: {
-        backgroundColor: "#ffffff",
-        color: "#000000",
-        hover: {
-          backgroundColor: "#e1bee7"
-        },
-        pointerOnHover: true,
-        highlightOnHover: true
-      }
-    },
-    pagination: {
-      style: {
-        color: "#6a1b9a"
-      },
-      pageButtonsStyle: {
-        borderRadius: "5px",
-        backgroundColor: "#f1f1f1",
-        color: "#6a1b9a",
-        fill: "#6a1b9a",
-        "&:disabled": {
-          backgroundColor: "#cccccc"
-        },
-        "&:hover:not(:disabled)": {
-          backgroundColor: "#d1c4e9"
-        },
-        "&:active": {
-          backgroundColor: "#ce93d8"
-        }
-      }
-    }
-  };
+    usePagination
+  );
 
   return (
-    <div>
-      <div className="container ">
-        <select
-          className="custom-select" // Add class name for styling
-          onChange={(e) => setSelectedColumn(e.target.value)}
-        >
-          <option value="">Select Column</option>
-          {columns.map((column) => (
-            <option key={column.name} value={column.name}>
-              {column.name}
-            </option>
-          ))}
-        </select>
-        <input
-          type="text"
+    <Box>
+      <Box style={{ display: "flex", gap: "10px", marginBottom: "10px" }}>
+        <FormControl variant="outlined" style={{ width: "calc(50% - 5px)" }}>
+          <InputLabel id="select-column-label">Add Filter</InputLabel>
+          <Select
+            labelId="select-column-label"
+            id="select-column"
+            value={selectedColumn}
+            onChange={(e) => setSelectedColumn(e.target.value)}
+            label="Add Filter"
+          >
+            <MenuItem value="">
+              <em>None</em>
+            </MenuItem>
+            {columns.map((column) => (
+              <MenuItem key={column.accessor} value={column.accessor}>
+                {column.Header}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
+        <TextField
           placeholder="Filter value"
+          variant="outlined"
           value={filterText}
           onChange={(e) => setFilterText(e.target.value)}
-          className="custom-input"
+          style={{ width: "calc(50% - 5px)" }}
         />
-      </div>
-      <hr className="hr-spacing" />
-      <DataTable
-        columns={columns}
-        data={filteredData}
-        pagination
-        highlightOnHover
-        pointerOnHover
-        customStyles={customStyles}
+      </Box>
+      <TableContainer>
+        <Table {...getTableProps()} className="custom-table">
+          <TableHead>
+            {headerGroups.map((headerGroup) => (
+              <TableRow {...headerGroup.getHeaderGroupProps()}>
+                {headerGroup.headers.map((column) => (
+                  <TableCell {...column.getHeaderProps()}>
+                    {column.render("Header")}
+                  </TableCell>
+                ))}
+              </TableRow>
+            ))}
+          </TableHead>
+          <TableBody {...getTableBodyProps()}>
+            {page.map((row) => {
+              prepareRow(row);
+              return (
+                <TableRow {...row.getRowProps()}>
+                  {row.cells.map((cell) => (
+                    <TableCell {...cell.getCellProps()}>
+                      {cell.render("Cell")}
+                    </TableCell>
+                  ))}
+                </TableRow>
+              );
+            })}
+          </TableBody>
+        </Table>
+      </TableContainer>
+      <TablePagination
+        rowsPerPageOptions={[5, 10, 20]}
+        component="div"
+        count={filteredData.length}
+        rowsPerPage={pageSize}
+        page={pageIndex}
+        onPageChange={(e, newPage) => gotoPage(newPage)}
+        onRowsPerPageChange={(e) => setPageSize(Number(e.target.value))}
       />
-    </div>
+    </Box>
   );
 };
-export default CustomDataTable;
+
+export default CustomTable;
