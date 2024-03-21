@@ -59,7 +59,7 @@ const CustomTable = ({ data }) => {
     {
       columns,
       data: filteredData,
-      initialState: { pageIndex: 0, pageSize: 5 }
+      initialState: { pageIndex: 0, pageSize: 10 }
     },
     usePagination
   );
@@ -161,7 +161,7 @@ const CustomTable = ({ data }) => {
         </Table>
       </TableContainer>
       <TablePagination
-        rowsPerPageOptions={[5, 10, 20]}
+        rowsPerPageOptions={[10, 20]}
         component="div"
         count={filteredData.length}
         rowsPerPage={pageSize}
