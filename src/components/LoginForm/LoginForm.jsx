@@ -4,7 +4,7 @@ import { FaUser, FaLock } from "react-icons/fa";
 import AuthContext from "../../context/AuthProvider";
 import { useConfig } from "../../context/DataContext";
 import { useNavigate } from "react-router-dom";
-import axios from "../api/axios";
+import Axios from "axios";
 
 const LoginForm = () => {
   const { setAuth } = useContext(AuthContext);
@@ -32,37 +32,37 @@ const LoginForm = () => {
     // Add logic for authentication here
     console.log("Logging in with", user, password);
 
-    // try {
-    //   //for mapping change user, password like in the backend model
-    //   const response = await axios.post(
-    //     config.LOGIN_URL,
-    //     JSON.stringify(user, password)
-    //   );
+    try {
+      //for mapping change user, password like in the backend model
+      const response = await Axios.post(
+        config.LOGIN_URL,
+        JSON.stringify(user, password)
+      );
 
-    //   console.log(JSON.stringify(response?.data));
+      console.log(JSON.stringify(response?.data));
 
-    //   //const accessToken = response?.data?.accessToken;
-    //   //const roles = response?.data?.roles;
+      //const accessToken = response?.data?.accessToken;
+      //const roles = response?.data?.roles;
 
-    //   //later you can add accessToken and roles
-    //   setAuth({ user, password });
-    //   setUser("");
-    //   setPassword("");
-    //   setSuccess(true);
-    //   setErrMsg("");
-    //   navigate("/home");
-    // } catch (error) {
-    //   if (!error?.response) {
-    //     setErrMsg("No Server Resposne");
-    //   } else if (errMsg.response.status === 400) {
-    //     setErrMsg("Missing UserName or Password");
-    //   } else if (errMsg.response.status === 401) {
-    //     setErrMsg("Unauthorized");
-    //   } else {
-    //     setErrMsg("Login Failed");
-    //   }
-    //   errRef.current.focus();
-    // }
+      //later you can add accessToken and roles
+      setAuth({ user, password });
+      setUser("");
+      setPassword("");
+      setSuccess(true);
+      setErrMsg("");
+      navigate("/home");
+    } catch (error) {
+      if (!error?.response) {
+        setErrMsg("No Server Resposne");
+      } else if (errMsg.response.status === 400) {
+        setErrMsg("Missing UserName or Password");
+      } else if (errMsg.response.status === 401) {
+        setErrMsg("Unauthorized");
+      } else {
+        setErrMsg("Login Failed");
+      }
+      errRef.current.focus();
+    }
     // Dummy check for username and password
     if (user === "admin" && password === "admin") {
       setSuccess(true);
