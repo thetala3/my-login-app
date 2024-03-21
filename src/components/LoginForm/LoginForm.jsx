@@ -2,9 +2,10 @@ import React, { useState, useEffect, useRef, useContext } from "react";
 import "./LoginForm.css"; // Import your CSS file here
 import { FaUser, FaLock } from "react-icons/fa";
 import AuthContext from "../../context/AuthProvider";
+import { useConfig } from "../../context/DataContext";
+import { useNavigate } from "react-router-dom";
 import axios from "../api/axios";
 
-const LOGIN_URL = "/auth";
 const LoginForm = () => {
   const { setAuth } = useContext(AuthContext);
   const userRef = useRef();
@@ -14,6 +15,9 @@ const LoginForm = () => {
   const [password, setPassword] = useState("");
   const [errMsg, setErrMsg] = useState("");
   const [success, setSuccess] = useState(false);
+
+  const config = useConfig();
+  const navigate = useNavigate();
 
   useEffect(() => {
     userRef.current.focus();
@@ -28,35 +32,37 @@ const LoginForm = () => {
     // Add logic for authentication here
     console.log("Logging in with", user, password);
 
-    try {
-      //for mapping change user, password like in the backend model
-      const response = await axios.post(
-        LOGIN_URL,
-        JSON.stringify(user, password)
-      );
-      console.log(JSON.stringify(response?.data));
+    // try {
+    //   //for mapping change user, password like in the backend model
+    //   const response = await axios.post(
+    //     config.LOGIN_URL,
+    //     JSON.stringify(user, password)
+    //   );
 
-      //const accessToken = response?.data?.accessToken;
-      //const roles = response?.data?.roles;
+    //   console.log(JSON.stringify(response?.data));
 
-      //later you can add accessToken and roles
-      setAuth({ user, password });
-      setUser("");
-      setPassword("");
-      setSuccess(true);
-      setErrMsg("");
-    } catch (error) {
-      if (!error?.response) {
-        setErrMsg("No Server Resposne");
-      } else if (errMsg.response.status === 400) {
-        setErrMsg("Missing UserName or Password");
-      } else if (errMsg.response.status === 401) {
-        setErrMsg("Unauthorized");
-      } else {
-        setErrMsg("Login Failed");
-      }
-      errRef.current.focus();
-    }
+    //   //const accessToken = response?.data?.accessToken;
+    //   //const roles = response?.data?.roles;
+
+    //   //later you can add accessToken and roles
+    //   setAuth({ user, password });
+    //   setUser("");
+    //   setPassword("");
+    //   setSuccess(true);
+    //   setErrMsg("");
+    //   navigate("/home");
+    // } catch (error) {
+    //   if (!error?.response) {
+    //     setErrMsg("No Server Resposne");
+    //   } else if (errMsg.response.status === 400) {
+    //     setErrMsg("Missing UserName or Password");
+    //   } else if (errMsg.response.status === 401) {
+    //     setErrMsg("Unauthorized");
+    //   } else {
+    //     setErrMsg("Login Failed");
+    //   }
+    //   errRef.current.focus();
+    // }
     // Dummy check for username and password
     if (user === "admin" && password === "admin") {
       setSuccess(true);
@@ -70,10 +76,7 @@ const LoginForm = () => {
     <>
       <div className="login-body">
         {success ? (
-          <div>
-            <h1>You are logged in!</h1>
-            <br />
-          </div>
+          navigate("/home")
         ) : (
           <div className="wrapper">
             <img src="" alt="Company Logo" className="login-logo" />

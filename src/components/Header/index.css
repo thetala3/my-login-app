@@ -26,16 +26,26 @@
 .navigation ul {
   list-style: none;
   display: flex;
+  padding: 0;
 }
 
 .navigation ul li {
   margin-right: 20px;
 }
 
-.navigation ul li a {
+.navigation ul li a,
+.navigation button {
   text-decoration: none;
   color: white;
+  background-color: transparent;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
   font-size: 12px; /* Adjust the font size as needed */
+}
+
+.navigation button:hover {
+  background-color: #0056b3; /* Darker shade for hover effect */
 }
 
 .language-selector {
@@ -67,6 +77,19 @@
   font-size: 12px; /* Adjust the font size as needed */
 }
 
+.bottom-header .icon {
+  position: relative;
+  right: 0;
+  top: 0;
+  transform: translateY(0);
+  font-size: 14px;
+  color: #ffffff;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
 .logout {
-  /* Add styles for logout button */
+  text-decoration: none;
+  color: white;
+  margin-left: 10px;
 }

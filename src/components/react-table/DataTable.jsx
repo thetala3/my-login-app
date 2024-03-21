@@ -66,8 +66,16 @@ const CustomTable = ({ data }) => {
 
   return (
     <Box>
-      <Box style={{ display: "flex", gap: "10px", marginBottom: "10px" }}>
-        <FormControl variant="outlined" style={{ width: "calc(50% - 5px)" }}>
+      <Box
+        className="custom-input-container"
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          gap: "5px",
+          marginBottom: "10px"
+        }}
+      >
+        <FormControl variant="outlined" fullWidth>
           <InputLabel id="select-column-label">Add Filter</InputLabel>
           <Select
             labelId="select-column-label"
@@ -75,6 +83,20 @@ const CustomTable = ({ data }) => {
             value={selectedColumn}
             onChange={(e) => setSelectedColumn(e.target.value)}
             label="Add Filter"
+            sx={{
+              width: "40%",
+              height: 36,
+              border: "1px solid #ccc",
+              borderRadius: 4,
+              fontSize: 14,
+              margin: "10px 0",
+              "& .MuiOutlinedInput-input": {
+                padding: "5px 10px"
+              },
+              "& .MuiSvgIcon-root": {
+                fontSize: 20
+              }
+            }}
           >
             <MenuItem value="">
               <em>None</em>
@@ -87,14 +109,29 @@ const CustomTable = ({ data }) => {
           </Select>
         </FormControl>
         <TextField
+          className="custom-input"
           placeholder="Filter value"
           variant="outlined"
           value={filterText}
           onChange={(e) => setFilterText(e.target.value)}
-          style={{ width: "calc(50% - 5px)" }}
+          sx={{
+            width: "40%",
+            "& .MuiOutlinedInput-root": {
+              height: 36,
+              borderRadius: 4,
+              fontSize: 14,
+              margin: "10px 0",
+              "& .MuiOutlinedInput-input": {
+                padding: "5px 10px"
+              },
+              "& .MuiSvgIcon-root": {
+                fontSize: 20
+              }
+            }
+          }}
         />
       </Box>
-      <TableContainer>
+      <TableContainer className="custom-table-container">
         <Table {...getTableProps()} className="custom-table">
           <TableHead>
             {headerGroups.map((headerGroup) => (
