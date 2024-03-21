@@ -66,16 +66,11 @@ const CustomTable = ({ data }) => {
 
   return (
     <Box>
-      <Box
-        className="custom-input-container"
-        sx={{
-          display: "flex",
-          alignItems: "center",
-          gap: "5px",
-          marginBottom: "10px"
-        }}
-      >
-        <FormControl variant="outlined" fullWidth>
+      <Box className="custom-input-container" sx={{ marginTop: "10px" }}>
+        <FormControl
+          variant="outlined"
+          sx={{ flex: 1, maxWidth: 300, margin: "0 10px" }}
+        >
           <InputLabel id="select-column-label">Add Filter</InputLabel>
           <Select
             labelId="select-column-label"
@@ -83,20 +78,6 @@ const CustomTable = ({ data }) => {
             value={selectedColumn}
             onChange={(e) => setSelectedColumn(e.target.value)}
             label="Add Filter"
-            sx={{
-              width: "40%",
-              height: 36,
-              border: "1px solid #ccc",
-              borderRadius: 4,
-              fontSize: 14,
-              margin: "10px 0",
-              "& .MuiOutlinedInput-input": {
-                padding: "5px 10px"
-              },
-              "& .MuiSvgIcon-root": {
-                fontSize: 20
-              }
-            }}
           >
             <MenuItem value="">
               <em>None</em>
@@ -114,21 +95,7 @@ const CustomTable = ({ data }) => {
           variant="outlined"
           value={filterText}
           onChange={(e) => setFilterText(e.target.value)}
-          sx={{
-            width: "40%",
-            "& .MuiOutlinedInput-root": {
-              height: 36,
-              borderRadius: 4,
-              fontSize: 14,
-              margin: "10px 0",
-              "& .MuiOutlinedInput-input": {
-                padding: "5px 10px"
-              },
-              "& .MuiSvgIcon-root": {
-                fontSize: 20
-              }
-            }
-          }}
+          sx={{ flex: 1, maxWidth: 300, margin: "0 10px" }}
         />
       </Box>
       <TableContainer className="custom-table-container">

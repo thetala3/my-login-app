@@ -1,17 +1,18 @@
-/* .custom-select,
+.custom-select,
 .custom-input {
-  width: 100%;
-  height: 36px;
-  border: 1px solid #ccc;
-  background: transparent;
-  border-radius: 4px;
-  font-size: 14px;
-  padding: 5px 10px;
-  margin: 10px 0;
-} */
+  margin: 0 5px !important;
+  flex: 1 1 auto;
+}
 
 .custom-input::placeholder {
   color: rgba(0, 0, 0, 0.42);
+}
+
+.custom-input-container {
+  display: flex;
+  justify-content: center; /* Center the children horizontally */
+  gap: "10px"; /* Adjust the gap between elements */
+  margin: "20px"; /* Vertical margin for spacing, remove horizontal margin */
 }
 
 .custom-table-container {
