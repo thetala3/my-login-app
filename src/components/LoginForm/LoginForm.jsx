@@ -42,9 +42,9 @@ const LoginForm = () => {
 
       console.log(JSON.stringify(response?.data));
 
-      //const accessToken = response?.data?.accessToken;
+      const accessToken = response?.data?.token;
       //const roles = response?.data?.roles;
-
+      localStorage.setItem('accessToken',accessToken);
       //later you can add accessToken and roles
       setAuth({ user, password });
       setUser("");
