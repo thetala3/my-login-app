@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef, useContext } from "react";
 import "./LoginForm.css"; // Import your CSS file here
 import { FaUser, FaLock } from "react-icons/fa";
 import AuthContext from "../../context/AuthProvider";
-import { useConfig } from "../../context/DataContext";
+import config from "../../context/config";
 import { useNavigate } from "react-router-dom";
 import Axios from "axios";
 
@@ -16,7 +16,7 @@ const LoginForm = () => {
   const [errMsg, setErrMsg] = useState("");
   const [success, setSuccess] = useState(false);
 
-  const config = useConfig();
+  //const config = window.config;
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -34,10 +34,11 @@ const LoginForm = () => {
 
     try {
       //for mapping change user, password like in the backend model
-      const response = await Axios.post(
-        config.LOGIN_URL,
-        JSON.stringify(user, password)
-      );
+      const formData = {
+        Username: user,
+        Password: password
+      };
+      const response = await Axios.post(config.LOGIN_URL, formData);
 
       console.log(JSON.stringify(response?.data));
 
@@ -64,12 +65,12 @@ const LoginForm = () => {
       errRef.current.focus();
     }
     // Dummy check for username and password
-    if (user === "admin" && password === "admin") {
-      setSuccess(true);
-      setErrMsg("");
-    } else {
-      setErrMsg("Invalid username or password");
-    }
+    // if (user === "admin" && password === "admin") {
+    //   setSuccess(true);
+    //   setErrMsg("");
+    // } else {
+    //   setErrMsg("Invalid username or password");
+    // }
   };
 
   return (

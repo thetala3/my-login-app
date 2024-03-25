@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
 import CustomDataTable from "../components/react-table/DataTable"; // Adjust the path as necessary
 import dataJ from "../components/react-table/test.json";
-import { useConfig } from "../context/DataContext";
+import config from "../context/config";
 import Axios from "axios";
 const ListTransaction = () => {
-  const config = useConfig();
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
